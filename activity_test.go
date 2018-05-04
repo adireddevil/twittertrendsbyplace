@@ -1,4 +1,4 @@
-package trendsbyplace
+package twittertrendsbyplace
 
 import (
 	"io/ioutil"

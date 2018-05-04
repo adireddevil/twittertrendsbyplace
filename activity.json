@@ -25,14 +25,14 @@
 	},
 	{
 		"name": "accessTokenSecret",
-		"type": "boolean",
+		"type": "string",
       "required": true
 
 	},
 	{
 		"name": "placeId",
 		"type": "int",
-    "required": false
+    "required": true
 
 	}
 
