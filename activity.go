@@ -3,10 +3,10 @@ package twittertrendsbyplace
 import (
 	s "strings"
 
-	"github.com/JayDShah/TwitterAPI"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"fmt"
+	"github.com/DipeshTest/allstarsshared/twitter"
 )
 
 // MyActivity is a stub for your Activity implementation
@@ -67,7 +67,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 		context.SetOutput("message", "PlaceId field is blank")
 
 	} else {
-		code, msg := Twitter.GetTrendsByPlace(consumerKey, consumerSecret, accessToken, accessTokenSecret, int64(placeId))
+		code, msg := twitter.GetTrendsByPlace(consumerKey, consumerSecret, accessToken, accessTokenSecret, int64(placeId))
 		context.SetOutput("statusCode", code)
 
 		context.SetOutput("message", msg)
