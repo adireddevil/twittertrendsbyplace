@@ -6,6 +6,7 @@ import (
 	"github.com/JayDShah/TwitterAPI"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
+	"fmt"
 )
 
 // MyActivity is a stub for your Activity implementation
@@ -32,9 +33,10 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	consumerSecret := s.TrimSpace(context.GetInput("consumerSecret").(string))
 	accessToken := s.TrimSpace(context.GetInput("accessToken").(string))
 	accessTokenSecret := s.TrimSpace(context.GetInput("accessTokenSecret").(string))
-	placeId := (context.GetInput("placeId").(int64))
+	placeId := (context.GetInput("placeId").(int))
 	//pageCount := (context.GetInput("pageCount").(int))
 
+	 fmt.Println("Value" ,placeId)
 	if len(consumerKey) == 0 {
 
 		context.SetOutput("statusCode", "101")
@@ -58,14 +60,14 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 		context.SetOutput("message", "Access Token Secret field is blank")
 
-	} else if (placeId) > 0 {
+	} else if (placeId) == 0 {
 
 		context.SetOutput("statusCode", "105")
 
 		context.SetOutput("message", "PlaceId field is blank")
 
 	} else {
-		code, msg := Twitter.GetTrendsByPlace(consumerKey, consumerSecret, accessToken, accessTokenSecret, placeId)
+		code, msg := Twitter.GetTrendsByPlace(consumerKey, consumerSecret, accessToken, accessTokenSecret, int64(placeId))
 		context.SetOutput("statusCode", code)
 
 		context.SetOutput("message", msg)
