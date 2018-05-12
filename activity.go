@@ -3,10 +3,10 @@ package twittertrendsbyplace
 import (
 	s "strings"
 
-	"github.com/TIBCOSoftware/flogo-lib/core/activity"
-	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"fmt"
 	"github.com/DipeshTest/allstarsshared/twitter"
+	"github.com/TIBCOSoftware/flogo-lib/core/activity"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
 // MyActivity is a stub for your Activity implementation
@@ -36,7 +36,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	placeId := (context.GetInput("placeId").(int))
 	//pageCount := (context.GetInput("pageCount").(int))
 
-	 fmt.Println("Value" ,placeId)
+	fmt.Println("Value", placeId)
 	if len(consumerKey) == 0 {
 
 		context.SetOutput("statusCode", "101")

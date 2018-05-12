@@ -36,7 +36,7 @@ func TestCreate(t *testing.T) {
 		return
 	}
 }
-
+/*
 func TestTwitterTrendsByPlace_Success(t *testing.T) {
 
 	defer func() {
@@ -56,7 +56,7 @@ func TestTwitterTrendsByPlace_Success(t *testing.T) {
 	tc.SetInput("accessToken", "1026895242-VTblWlyH3J24lsQbJcO7KBxkbd7ByGyUXIkAFTk")
 	tc.SetInput("accessTokenSecret", "h41iwGi3oHwgP01tmVYwY1ceaqaly7RA14zY6oEqigD8b")
 	//placeId is WOEID for a location eg: Chicago - 2379574 / Mumbai - 2295411
-	tc.SetInput("placeId", 	2295411)
+	tc.SetInput("placeId", 2295411)
 	//tc.SetInput("pageCount", 10)
 
 	act.Eval(tc)
@@ -68,9 +68,104 @@ func TestTwitterTrendsByPlace_Success(t *testing.T) {
 	fmt.Print(msg)
 	assert.Equal(t, code, "200")
 
+}
+
+func TestTwitterTrendsByPlace_InvalidToken(t *testing.T) {
+
+	defer func() {
+		if r := recover(); r != nil {
+			t.Failed()
+			t.Errorf("panic during execution: %v", r)
+		}
+	}()
+
+	act := NewActivity(getActivityMetadata())
+	tc := test.NewTestActivityContext(getActivityMetadata())
+
+	//setup attrs
+
+	tc.SetInput("consumerKey", "6f2ogTcNPK0Mf6OO6DSL0GxN")
+	tc.SetInput("consumerSecret", "Hb8gDvSnfIkLuO6L6NQWakf8w2OHBnfrH1z4Cjh8IrCsGa4BDM")
+	tc.SetInput("accessToken", "1026895242-VTblWlyH3J24lsQbJcO7KBxkbd7ByGyUXIkAFTk")
+	tc.SetInput("accessTokenSecret", "h41iwGi3oHwgP01tmVYwY1ceaqaly7RA14zY6oEqigD8b")
+	//placeId is WOEID for a location eg: Chicago - 2379574 / Mumbai - 2295411
+	tc.SetInput("placeId", 2295411)
+	//tc.SetInput("pageCount", 10)
+
+	act.Eval(tc)
+
+	//check result attr
+
+	code := tc.GetOutput("statusCode")
+	msg := tc.GetOutput("message")
+	fmt.Print(msg)
+	assert.Equal(t, code, "401")
+
+}
+
+func TestTwitterTrendsByPlace_InvalidPlaceID(t *testing.T) {
+
+	defer func() {
+		if r := recover(); r != nil {
+			t.Failed()
+			t.Errorf("panic during execution: %v", r)
+		}
+	}()
+
+	act := NewActivity(getActivityMetadata())
+	tc := test.NewTestActivityContext(getActivityMetadata())
+
+	//setup attrs
+
+	tc.SetInput("consumerKey", "6f2ogTcNPK0Mf6OO6DSL0GxNB")
+	tc.SetInput("consumerSecret", "Hb8gDvSnfIkLuO6L6NQWakf8w2OHBnfrH1z4Cjh8IrCsGa4BDM")
+	tc.SetInput("accessToken", "1026895242-VTblWlyH3J24lsQbJcO7KBxkbd7ByGyUXIkAFTk")
+	tc.SetInput("accessTokenSecret", "h41iwGi3oHwgP01tmVYwY1ceaqaly7RA14zY6oEqigD8b")
+	//placeId is WOEID for a location eg: Chicago - 2379574 / Mumbai - 2295411
+	tc.SetInput("placeId", 22954)
+	//tc.SetInput("pageCount", 10)
+
+	act.Eval(tc)
+
+	//check result attr
+
+	code := tc.GetOutput("statusCode")
+	msg := tc.GetOutput("message")
+	fmt.Print(msg)
+	assert.Equal(t, code, "404")
+
+}
+*/
+
+func TestTwitterTrendsByPlace_InvalidPlaceID(t *testing.T) {
+
+	defer func() {
+		if r := recover(); r != nil {
+			t.Failed()
+			t.Errorf("panic during execution: %v", r)
+		}
+	}()
+
+	act := NewActivity(getActivityMetadata())
+	tc := test.NewTestActivityContext(getActivityMetadata())
+
+	//setup attrs
+
+	tc.SetInput("consumerKey", "6f2ogTcNPK0Mf6OO6DSL0GxNB")
+	tc.SetInput("consumerSecret", "Hb8gDvSnfIkLuO6L6NQWakf8w2OHBnfrH1z4Cjh8IrCsGa4BDM")
+	tc.SetInput("accessToken", "1026895242-VTblWlyH3J24lsQbJcO7KBxkbd7ByGyUXIkAFTk")
+	tc.SetInput("accessTokenSecret", "h41iwGi3oHwgP01tmVYwY1ceaqaly7RA14zY6oEqigD8b")
+	//placeId is WOEID for a location eg: Chicago - 2379574 / Mumbai - 2295411
+	//tc.SetInput("placeId",4 )
 
 
+	act.Eval(tc)
 
+	//check result attr
 
+	code := tc.GetOutput("statusCode")
+	msg := tc.GetOutput("message")
+	fmt.Print(msg)
+	assert.Equal(t, code, "105")
 
 }
